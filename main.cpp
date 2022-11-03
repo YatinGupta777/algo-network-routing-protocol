@@ -10,7 +10,7 @@ int main()
     cout << a + b << endl;
     Graph g;
 
-    g.sayHello();
+    g.init();
 
     return 0;
 }
