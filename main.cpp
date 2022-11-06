@@ -3,6 +3,7 @@
 
 using namespace std;
 class Graph;
+void maxBandwidthPath(Graph g, int source, int destination);
 
 int main()
 {
@@ -10,7 +11,7 @@ int main()
     sparse_graph.init();
     sparse_graph.generateGraph(6);
     sparse_graph.print();
-
+    maxBandwidthPath(sparse_graph, 0, VERTICES - 1);
     // dense_graph.init();
     // dense_graph.generateGraph(VERTICES / 5);
     // dense_graph.print();

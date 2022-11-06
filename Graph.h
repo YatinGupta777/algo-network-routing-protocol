@@ -11,9 +11,8 @@ public:
 };
 class Graph
 {
-    Node *nodes[5000];
-
 public:
+    Node *nodes[5000];
     void init();
     void generateGraph(int degree);
     void print();
