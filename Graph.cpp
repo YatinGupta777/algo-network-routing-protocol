@@ -21,43 +21,59 @@ void Graph::init()
     }
 }
 
+bool Graph::isEdgePresent(int source, int destination)
+{
+    Node *temp = nodes[source];
+    while (temp != NULL)
+    {
+        if (temp->x == destination)
+            return true;
+
+        temp = temp->next;
+    }
+    return false;
+}
+
+void Graph::addEdge(int source, int destination)
+{
+    int weight = rand() % MAX_WEIGHT;
+    Node *s = new Node(source, weight);
+    Node *d = new Node(destination, weight);
+
+    Node *temp = nodes[source];
+    while (temp->next != NULL)
+        temp = temp->next;
+    temp->next = d;
+
+    temp = nodes[destination];
+
+    while (temp->next != NULL)
+        temp = temp->next;
+    temp->next = s;
+}
+
 void Graph::generateGraph(int degree)
 {
     // add cycle to ensure connectedness
-    for (int i = 0; i < VERTICES; i++)
+    for (int i = 0; i < VERTICES - 1; i++)
     {
-        int w = rand() % MAX_WEIGHT;
-        Node *neighbor = new Node(i + 1, w);
-        nodes[i]->next = neighbor;
+        addEdge(i, i + 1);
     }
-    Node *first_vertex = new Node(0, 0);
-    nodes[VERTICES - 1]->next = first_vertex;
+    addEdge(VERTICES - 1, 0);
 
     for (int i = 0; i < VERTICES; i++)
     {
-        int visited[VERTICES] = {0};
-        visited[i] = 1; // To ensure no self loops
         for (int j = 0; j < degree - 1; j++)
         {
             int x = rand() % VERTICES;
-            int w = rand() % MAX_WEIGHT;
 
             // To ensure one edge between 2 unique pair of vertices
-            if (visited[x] == 1)
+            if (isEdgePresent(i, x))
             {
                 j--;
                 continue;
             }
-
-            Node *t = nodes[i];
-
-            while (t->next != NULL)
-                t = t->next;
-
-            Node *neighbor = new Node(x, w);
-            t->next = neighbor;
-
-            visited[x] = 1;
+            addEdge(i, x);
         }
     }
 }

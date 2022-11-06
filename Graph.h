@@ -1,5 +1,5 @@
 #pragma once
-#define VERTICES 10
+#define VERTICES 100
 #define MAX_WEIGHT 100
 class Node
 {
@@ -17,4 +17,6 @@ public:
     void init();
     void generateGraph(int degree);
     void print();
+    void addEdge(int source, int destination);
+    bool isEdgePresent(int source, int destination);
 };
