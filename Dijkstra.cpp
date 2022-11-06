@@ -1,9 +1,9 @@
 #include <iostream>
-#include "Graph.h"
+#include "Dijkstra.h"
 
 using namespace std;
 
-bool isFringerPresent(int status[])
+bool Dijkstra::isFringerPresent(int status[])
 {
     for (int i = 0; i < VERTICES; i++)
     {
@@ -13,7 +13,7 @@ bool isFringerPresent(int status[])
     return false;
 }
 
-int largestBandwidthFringer(int status[], int bwidth[])
+int Dijkstra::largestBandwidthFringer(int status[], int bwidth[])
 {
     int ans = 0;
     int max_w = 0;
@@ -31,7 +31,7 @@ int largestBandwidthFringer(int status[], int bwidth[])
     return ans;
 }
 
-void maxBandwidthPath(Graph g, int source, int dest)
+void Dijkstra::maxBandwidthPath(Graph g, int source, int dest)
 {
     int status[VERTICES]; // 0 unseen 1 fringer 2 in-tree
     int bwidth[VERTICES];

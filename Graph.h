@@ -1,3 +1,4 @@
+#pragma once
 #define VERTICES 10
 #define MAX_WEIGHT 100
 class Node
