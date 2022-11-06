@@ -17,7 +17,7 @@ void Graph::init()
 {
     for (int i = 0; i < VERTICES; i++)
     {
-        nodes[i] = new Node(i, i);
+        nodes[i] = new Node(i, 0);
     }
 }
 
@@ -26,7 +26,8 @@ void Graph::generateGraph(int degree)
     // add cycle to ensure connectedness
     for (int i = 0; i < VERTICES; i++)
     {
-        Node *neighbor = new Node(i + 1, i + 1);
+        int w = rand() % MAX_WEIGHT;
+        Node *neighbor = new Node(i + 1, w);
         nodes[i]->next = neighbor;
     }
     Node *first_vertex = new Node(0, 0);
@@ -39,6 +40,7 @@ void Graph::generateGraph(int degree)
         for (int j = 0; j < degree - 1; j++)
         {
             int x = rand() % VERTICES;
+            int w = rand() % MAX_WEIGHT;
 
             // To ensure one edge between 2 unique pair of vertices
             if (visited[x] == 1)
@@ -52,7 +54,7 @@ void Graph::generateGraph(int degree)
             while (t->next != NULL)
                 t = t->next;
 
-            Node *neighbor = new Node(x, x);
+            Node *neighbor = new Node(x, w);
             t->next = neighbor;
 
             visited[x] = 1;
@@ -68,7 +70,7 @@ void Graph::print()
         Node *t = nodes[i]->next;
         while (t != NULL)
         {
-            cout << t->x;
+            cout << "(" << t->x << ": " << t->w << ")";
             if (t->next != NULL)
                 cout << " - ";
             t = t->next;
