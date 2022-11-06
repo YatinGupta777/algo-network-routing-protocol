@@ -1,4 +1,4 @@
-#define VERTICES 5
+#define VERTICES 10
 
 class Node
 {
@@ -15,6 +15,6 @@ class Graph
 
 public:
     void init();
-    void generateGraph();
+    void generateGraph(int degree);
     void print();
 };
