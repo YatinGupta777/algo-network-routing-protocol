@@ -8,7 +8,7 @@ class MUF
 
 public:
     MUF();
-    void MakeSet(int vertex);
-    void Union(int r1, int r2);
-    int Find(int vertex);
+    void makeSet(int vertex);
+    void union_vertices(int r1, int r2);
+    int find(int vertex);
 };

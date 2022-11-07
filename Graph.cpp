@@ -15,8 +15,8 @@ Node::Node(int a, int b)
 
 Edge::Edge(int a, int b, int c)
 {
-    source = a;
-    destination = b;
+    v1 = a;
+    v2 = b;
     weight = c;
 }
 
@@ -41,9 +41,8 @@ bool Graph::isEdgePresent(int source, int destination)
     return false;
 }
 
-void Graph::addEdge(int source, int destination)
+void Graph::addEdge(int source, int destination, int weight = rand() % MAX_WEIGHT)
 {
-    int weight = rand() % MAX_WEIGHT;
     Node *s = new Node(source, weight);
     Node *d = new Node(destination, weight);
 

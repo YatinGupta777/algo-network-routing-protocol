@@ -12,12 +12,12 @@ MUF::MUF()
     }
 }
 
-void MUF::MakeSet(int vertex)
+void MUF::makeSet(int vertex)
 {
     dad[vertex] = -1;
     rank[vertex] = 0;
 }
-void MUF::Union(int r1, int r2)
+void MUF::union_vertices(int r1, int r2)
 {
     if (rank[r1] > rank[r2])
         dad[r2] = r1;
@@ -29,7 +29,7 @@ void MUF::Union(int r1, int r2)
         rank[r2]++;
     }
 }
-int MUF::Find(int vertex)
+int MUF::find(int vertex)
 {
     int r = vertex;
     while (dad[r] != -1)

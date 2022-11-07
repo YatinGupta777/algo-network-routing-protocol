@@ -15,8 +15,8 @@ public:
 class Edge
 {
 public:
-    int source;
-    int destination;
+    int v1;
+    int v2;
     int weight;
     Edge(int a, int b, int c);
 };
@@ -28,6 +28,6 @@ public:
     void init();
     void generateGraph(int degree);
     void print();
-    void addEdge(int source, int destination);
+    void addEdge(int source, int destination, int weight);
     bool isEdgePresent(int source, int destination);
 };
