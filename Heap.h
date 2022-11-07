@@ -12,7 +12,7 @@ public:
     MaxHeap();
     void fix_bottom_up(int current_node);
     void insert(Node *g);
-    void deleteElement();
-    void maximum();
+    void deleteElement(int vertex);
+    int maximum();
     void print();
 };
