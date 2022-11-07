@@ -63,7 +63,6 @@ void Dijkstra::maxBandwidthPath(Graph g, int source, int dest)
     while (isFringerPresent(status))
     {
         int vertex_largest_bwidth = largestBandwidthFringer(status, bwidth);
-        cout << "Normal " << vertex_largest_bwidth << endl;
         status[vertex_largest_bwidth] = 2;
         Node *iterator = g.nodes[vertex_largest_bwidth]->next;
 
@@ -132,7 +131,6 @@ void Dijkstra::maxBandwidthPathWithHeap(Graph g, int source, int dest)
     while (isFringerPresent(status)) // TODO
     {
         int vertex_largest_bwidth = fringer_heap.maximum();
-        fringer_heap.print();
         fringer_heap.deleteElement(vertex_largest_bwidth);
 
         status[vertex_largest_bwidth] = 2;

@@ -11,7 +11,7 @@ MaxHeap::MaxHeap()
         D[i] = -1;
         P[i] = -1;
     }
-    current_size = -1;
+    last_element_index = -1;
 }
 
 void MaxHeap::swap(int x, int y)
@@ -46,10 +46,10 @@ void MaxHeap::fixTopDown(int current_node)
     int left_element = 2 * current_node + 1;
     int right_element = 2 * current_node + 2;
 
-    if (left_element < current_size && D[H[left_element]] > D[H[largest]])
+    if (left_element <= last_element_index && D[H[left_element]] > D[H[largest]])
         largest = left_element;
 
-    if (right_element < current_size && D[H[right_element]] > D[H[largest]])
+    if (right_element <= last_element_index && D[H[right_element]] > D[H[largest]])
         largest = right_element;
 
     if (largest != current_node)
@@ -61,12 +61,12 @@ void MaxHeap::fixTopDown(int current_node)
 
 void MaxHeap::insert(int vertex, int weight)
 {
-    current_size++;
+    last_element_index++;
 
-    H[current_size] = vertex;
+    H[last_element_index] = vertex;
     D[vertex] = weight;
-    P[vertex] = current_size;
-    fixBottomUp(current_size);
+    P[vertex] = last_element_index;
+    fixBottomUp(last_element_index);
 }
 
 int MaxHeap::maximum()
@@ -83,15 +83,16 @@ void MaxHeap::deleteElement(int vertex)
     fixBottomUp(position);
 
     // swap with last element
-    swap(0, current_size);
-    current_size--;
+    swap(0, last_element_index);
+
+    last_element_index--;
     fixTopDown(0);
 }
 
 void MaxHeap::print()
 {
     cout << endl;
-    for (int i = 0; i < current_size; i++)
+    for (int i = 0; i <= last_element_index; i++)
         cout << " H " << H[i] << " D " << D[H[i]] << " P " << P[H[i]] << endl;
 
     for (int i = 0; i < VERTICES; i++)

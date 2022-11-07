@@ -6,7 +6,7 @@ class MaxHeap
     int H[VERTICES];
     int D[VERTICES];
     int P[VERTICES];
-    int current_size;
+    int last_element_index;
 
 public:
     MaxHeap();
