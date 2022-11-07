@@ -14,6 +14,11 @@ MaxHeap::MaxHeap()
     last_element_index = -1;
 }
 
+int MaxHeap::currentSize()
+{
+    return last_element_index + 1;
+}
+
 void MaxHeap::swap(int x, int y)
 {
     int initial_parent = H[x];

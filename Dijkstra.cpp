@@ -128,7 +128,7 @@ void Dijkstra::maxBandwidthPathWithHeap(Graph g, int source, int dest)
         fringer_heap.insert(vertex, weight);
     }
 
-    while (isFringerPresent(status)) // TODO
+    while (fringer_heap.currentSize() > 0)
     {
         int vertex_largest_bwidth = fringer_heap.maximum();
         fringer_heap.deleteElement(vertex_largest_bwidth);

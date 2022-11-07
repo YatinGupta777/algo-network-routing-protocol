@@ -17,4 +17,5 @@ public:
     void deleteElement(int vertex);
     int maximum();
     void print();
+    int currentSize();
 };
