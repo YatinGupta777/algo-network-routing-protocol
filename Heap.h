@@ -10,7 +10,9 @@ class MaxHeap
 
 public:
     MaxHeap();
-    void fix_bottom_up(int current_node);
+    void fixBottomUp(int current_node);
+    void fixTopDown(int current_node);
+    void swap(int x, int y);
     void insert(Node *g);
     void deleteElement(int vertex);
     int maximum();

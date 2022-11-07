@@ -14,7 +14,19 @@ MaxHeap::MaxHeap()
     current_size = -1;
 }
 
-void MaxHeap::fix_bottom_up(int current_node)
+void MaxHeap::swap(int x, int y)
+{
+    int initial_parent = H[x];
+    int initial_node = H[y];
+
+    H[x] = initial_node;
+    H[y] = initial_parent;
+
+    P[initial_parent] = y;
+    P[initial_node] = x;
+}
+
+void MaxHeap::fixBottomUp(int current_node)
 {
     if (current_node <= 0)
         return;
@@ -23,16 +35,27 @@ void MaxHeap::fix_bottom_up(int current_node)
 
     if (D[H[current_node]] > D[H[parent]])
     {
-        int initial_parent = H[parent];
-        int initial_node = H[current_node];
+        swap(parent, current_node);
+        fixBottomUp(parent);
+    }
+}
 
-        H[parent] = initial_node;
-        H[current_node] = initial_parent;
+void MaxHeap::fixTopDown(int current_node)
+{
+    int largest = current_node;
+    int left_element = 2 * current_node + 1;
+    int right_element = 2 * current_node + 2;
 
-        P[initial_parent] = current_node;
-        P[initial_node] = parent;
+    if (left_element < current_size && D[H[left_element]] > D[H[largest]])
+        largest = left_element;
 
-        fix_bottom_up(parent);
+    if (right_element < current_size && D[H[right_element]] > D[H[largest]])
+        largest = right_element;
+
+    if (largest != current_node)
+    {
+        swap(largest, current_node);
+        fixTopDown(largest);
     }
 }
 
@@ -45,7 +68,7 @@ void MaxHeap::insert(Node *g)
     H[current_size] = vertex;
     D[vertex] = weight;
     P[vertex] = current_size;
-    fix_bottom_up(current_size);
+    fixBottomUp(current_size);
 }
 
 int MaxHeap::maximum()
@@ -55,6 +78,20 @@ int MaxHeap::maximum()
 
 void MaxHeap::deleteElement(int vertex)
 {
+    int position = P[vertex];
+
+    // assign weight as MAX value to move it up
+    int weight = D[vertex];
+    D[vertex] = INT_MAX;
+    fixBottomUp(position);
+
+    // swap with last element
+    swap(0, current_size);
+    current_size--;
+    fixTopDown(0);
+
+    // Add the original weight for tracking it
+    D[vertex] = weight;
 }
 
 void MaxHeap::print()
