@@ -2,10 +2,11 @@
 #include "Kruskal.h"
 #include "Set.h"
 #include <iostream>
+#include <queue>
 
 using namespace std;
 
-bool cmp(Edge e1, Edge e2)
+bool cmp(Edge e1, Edge e2) // TODO
 {
     return e1.weight > e2.weight;
 }
@@ -27,7 +28,43 @@ void Kruskal::extractEdges(Graph G, vector<Edge> &edges)
     }
 }
 
-void Kruskal::createMST(Graph G)
+void Kruskal::BFS(Graph G, int source, int destination)
+{
+    int visited[VERTICES] = {0}, dad[VERTICES] = {0};
+    queue<int> q; // TODO
+    q.push(source);
+    visited[source] = 1;
+    dad[source] = -1;
+
+    while (!q.empty())
+    {
+        int x = q.front();
+        q.pop();
+
+        Node *t = G.nodes[x]->next;
+        while (t != NULL)
+        {
+            int v = t->x;
+            if (visited[v] == 0)
+            {
+                visited[v] = 1;
+                q.push(v);
+                dad[v] = x;
+            }
+            t = t->next;
+        }
+    }
+
+    int x = destination;
+    while (dad[x] != -1)
+    {
+        cout << x << " ";
+        x = dad[x];
+    }
+    cout << source;
+}
+
+Graph Kruskal::createMST(Graph G)
 {
     Graph MST;
     MST.init();
@@ -56,4 +93,10 @@ void Kruskal::createMST(Graph G)
     }
 
     MST.print();
+    return MST;
+}
+
+void Kruskal::maxBandwidthPath(Graph mst, int source, int destination)
+{
+    BFS(mst, source, destination);
 }

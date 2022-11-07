@@ -28,7 +28,8 @@ int main()
     // fringer_heap.insert(4, 4);
     // fringer_heap.print();
     cout << "KRUSKAL " << endl;
-    Kruskal::createMST(sparse_graph);
+    Graph mst = Kruskal::createMST(sparse_graph);
+    Kruskal::maxBandwidthPath(mst, 0, 2);
 
     return 0;
 }
