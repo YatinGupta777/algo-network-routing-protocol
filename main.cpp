@@ -27,6 +27,7 @@ int main()
     // fringer_heap.deleteElement(4);
     // fringer_heap.insert(4, 4);
     // fringer_heap.print();
+    cout << "KRUSKAL " << endl;
     Kruskal::createMST(sparse_graph);
 
     return 0;

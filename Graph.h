@@ -24,7 +24,6 @@ class Graph
 {
 public:
     Node *nodes[5000];
-    vector<Edge> edges; // TODO ASK
     void init();
     void generateGraph(int degree);
     void print();

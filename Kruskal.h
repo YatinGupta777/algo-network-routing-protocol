@@ -5,5 +5,5 @@ class Kruskal
 {
 public:
     static void createMST(Graph G);
-    static void extractEdges(Graph G);
+    static void extractEdges(Graph G, vector<Edge> &edges);
 };

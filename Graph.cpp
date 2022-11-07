@@ -58,7 +58,6 @@ void Graph::addEdge(int source, int destination, int weight = rand() % MAX_WEIGH
     temp->next = s;
 
     Edge e(source, destination, weight);
-    edges.push_back(e);
 }
 
 void Graph::generateGraph(int degree)
@@ -100,5 +99,4 @@ void Graph::print()
         }
         cout << endl;
     }
-    cout << "Number of edges : " << edges.size() << endl;
 }
