@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Graph.h"
 #include "Dijkstra.h"
+#include "Heap.h"
 
 using namespace std;
 class Graph;
@@ -12,10 +13,11 @@ int main()
     sparse_graph.generateGraph(3);
     sparse_graph.print();
 
-    Dijkstra::maxBandwidthPathWithHeap(sparse_graph, 0, VERTICES - 1);
-    // dense_graph.init();
-    // dense_graph.generateGraph(VERTICES / 5);
-    // dense_graph.print();
+    // Dijkstra::maxBandwidthPath(sparse_graph, 0, VERTICES - 1);
+    // Dijkstra::maxBandwidthPathWithHeap(sparse_graph, 0, VERTICES - 1);
+    //  dense_graph.init();
+    //  dense_graph.generateGraph(VERTICES / 5);
+    //  dense_graph.print();
 
     return 0;
 }

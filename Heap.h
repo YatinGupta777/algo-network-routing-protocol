@@ -13,7 +13,7 @@ public:
     void fixBottomUp(int current_node);
     void fixTopDown(int current_node);
     void swap(int x, int y);
-    void insert(Node *g);
+    void insert(int vertex, int weight);
     void deleteElement(int vertex);
     int maximum();
     void print();

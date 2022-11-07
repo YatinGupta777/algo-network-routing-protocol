@@ -63,6 +63,7 @@ void Dijkstra::maxBandwidthPath(Graph g, int source, int dest)
     while (isFringerPresent(status))
     {
         int vertex_largest_bwidth = largestBandwidthFringer(status, bwidth);
+        cout << "Normal " << vertex_largest_bwidth << endl;
         status[vertex_largest_bwidth] = 2;
         Node *iterator = g.nodes[vertex_largest_bwidth]->next;
 
@@ -119,16 +120,21 @@ void Dijkstra::maxBandwidthPathWithHeap(Graph g, int source, int dest)
     while (iterator != NULL)
     {
         Node *neighbor_vertex = iterator;
-        status[neighbor_vertex->x] = 1;
-        bwidth[neighbor_vertex->x] = neighbor_vertex->w;
-        dad[neighbor_vertex->x] = source;
+        int vertex = neighbor_vertex->x;
+        int weight = neighbor_vertex->w;
+        status[vertex] = 1;
+        bwidth[vertex] = weight;
+        dad[vertex] = source;
         iterator = iterator->next;
-        fringer_heap.insert(neighbor_vertex);
+        fringer_heap.insert(vertex, weight);
     }
 
-    while (isFringerPresent(status))
+    while (isFringerPresent(status)) // TODO
     {
-        int vertex_largest_bwidth = largestBandwidthFringer(status, bwidth);
+        int vertex_largest_bwidth = fringer_heap.maximum();
+        fringer_heap.print();
+        fringer_heap.deleteElement(vertex_largest_bwidth);
+
         status[vertex_largest_bwidth] = 2;
         Node *iterator = g.nodes[vertex_largest_bwidth]->next;
 
@@ -140,27 +146,27 @@ void Dijkstra::maxBandwidthPathWithHeap(Graph g, int source, int dest)
                 status[neighbor_vertex->x] = 1;
                 dad[neighbor_vertex->x] = vertex_largest_bwidth;
                 bwidth[neighbor_vertex->x] = min(bwidth[vertex_largest_bwidth], neighbor_vertex->w);
+                fringer_heap.insert(neighbor_vertex->x, bwidth[neighbor_vertex->x]);
             }
             else if (status[neighbor_vertex->x] == 1 && bwidth[neighbor_vertex->x] < min(bwidth[vertex_largest_bwidth], neighbor_vertex->w))
             {
+                fringer_heap.deleteElement(neighbor_vertex->x);
                 dad[neighbor_vertex->x] = vertex_largest_bwidth;
                 bwidth[neighbor_vertex->x] = min(bwidth[vertex_largest_bwidth], neighbor_vertex->w);
+                fringer_heap.insert(neighbor_vertex->x, bwidth[neighbor_vertex->x]);
             }
             iterator = iterator->next;
         }
     }
 
-    fringer_heap.print();
     cout << endl;
-
-    // cout << endl;
-    // for (int i = 0; i < VERTICES; i++)
-    // {
-    //     cout << dad[i] << " ";
-    // }
-    // cout << endl;
-    // for (int i = 0; i < VERTICES; i++)
-    // {
-    //     cout << bwidth[i] << " ";
-    // }
+    for (int i = 0; i < VERTICES; i++)
+    {
+        cout << dad[i] << " ";
+    }
+    cout << endl;
+    for (int i = 0; i < VERTICES; i++)
+    {
+        cout << bwidth[i] << " ";
+    }
 }

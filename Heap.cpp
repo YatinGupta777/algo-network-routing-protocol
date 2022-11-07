@@ -59,11 +59,9 @@ void MaxHeap::fixTopDown(int current_node)
     }
 }
 
-void MaxHeap::insert(Node *g)
+void MaxHeap::insert(int vertex, int weight)
 {
     current_size++;
-    int vertex = g->x;
-    int weight = g->w;
 
     H[current_size] = vertex;
     D[vertex] = weight;
@@ -81,7 +79,6 @@ void MaxHeap::deleteElement(int vertex)
     int position = P[vertex];
 
     // assign weight as MAX value to move it up
-    int weight = D[vertex];
     D[vertex] = INT_MAX;
     fixBottomUp(position);
 
@@ -89,13 +86,16 @@ void MaxHeap::deleteElement(int vertex)
     swap(0, current_size);
     current_size--;
     fixTopDown(0);
-
-    // Add the original weight for tracking it
-    D[vertex] = weight;
 }
 
 void MaxHeap::print()
 {
-    // for (int i = 0; i < VERTICES; i++)
-    //     cout << " H " << H[i] << " D " << D[H[i]] << " P " << P[H[i]] << endl;
+    cout << endl;
+    for (int i = 0; i < current_size; i++)
+        cout << " H " << H[i] << " D " << D[H[i]] << " P " << P[H[i]] << endl;
+
+    for (int i = 0; i < VERTICES; i++)
+        cout << " " << H[i];
+    cout << endl
+         << "XXXXXXX" << endl;
 }
