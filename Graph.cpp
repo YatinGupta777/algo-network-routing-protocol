@@ -63,17 +63,15 @@ void Graph::generateGraph(int degree)
 
     for (int i = 0; i < VERTICES; i++)
     {
-        for (int j = 0; j < degree - 1; j++)
+        for (int j = 0; j < (degree) / 2; j++)
         {
             int x = rand() % VERTICES;
 
             // To ensure one edge between 2 unique pair of vertices
-            if (isEdgePresent(i, x))
+            if (!isEdgePresent(i, x))
             {
-                j--;
-                continue;
+                addEdge(i, x);
             }
-            addEdge(i, x);
         }
     }
 }

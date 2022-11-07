@@ -1,5 +1,5 @@
 #pragma once
-#define VERTICES 100
+#define VERTICES 6
 #define MAX_WEIGHT 100
 class Node
 {
