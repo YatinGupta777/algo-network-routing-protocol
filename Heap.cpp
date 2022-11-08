@@ -105,3 +105,38 @@ void MaxHeap::print()
     cout << endl
          << "XXXXXXX" << endl;
 }
+
+void EdgeHeap::heapify(vector<Edge> &edges, int n, int i)
+{
+    int smallest = i;
+    int left_element = 2 * i + 1;
+    int right_element = 2 * i + 2;
+
+    if (left_element < n && edges[left_element].weight < edges[smallest].weight)
+        smallest = left_element;
+
+    if (right_element < n && edges[right_element].weight < edges[smallest].weight)
+        smallest = right_element;
+
+    if (smallest != i)
+    {
+        Edge temp = edges[smallest];
+        edges[smallest] = edges[i];
+        edges[i] = temp;
+        heapify(edges, n, smallest);
+    }
+}
+
+void EdgeHeap::heapSort(vector<Edge> &edges, int n)
+{
+    for (int i = (n / 2) - 1; i >= 0; i--)
+        heapify(edges, n, i);
+
+    for (int i = n - 1; i >= 0; i--)
+    {
+        Edge temp = edges[i];
+        edges[i] = edges[0];
+        edges[0] = temp;
+        heapify(edges, i, 0);
+    }
+}

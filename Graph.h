@@ -23,7 +23,7 @@ public:
 class Graph
 {
 public:
-    Node *nodes[5000];
+    Node *nodes[VERTICES];
     void init();
     void generateGraph(int degree);
     void print();

@@ -19,3 +19,11 @@ public:
     void print();
     int currentSize();
 };
+
+// Min Heap so that sort is descending order
+class EdgeHeap
+{
+public:
+    static void heapify(vector<Edge> &edges, int n, int i);
+    static void heapSort(vector<Edge> &edges, int n);
+};

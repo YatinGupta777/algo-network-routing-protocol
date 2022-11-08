@@ -1,6 +1,7 @@
 #include "Graph.h"
 #include "Kruskal.h"
 #include "Set.h"
+#include "Heap.h"
 #include <iostream>
 #include <queue>
 
@@ -72,7 +73,8 @@ Graph Kruskal::createMST(Graph G)
 
     extractEdges(G, edges);
     int number_of_edges = edges.size();
-    sort(edges.begin(), edges.end(), cmp); // TODO REPLACE WITH HEAP SORT
+
+    EdgeHeap::heapSort(edges, number_of_edges);
 
     MUF kruskal_muf;
 
@@ -92,7 +94,6 @@ Graph Kruskal::createMST(Graph G)
         }
     }
 
-    MST.print();
     return MST;
 }
 
