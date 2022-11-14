@@ -106,7 +106,7 @@ void MaxHeap::print()
          << "XXXXXXX" << endl;
 }
 
-void EdgeHeap::heapify(vector<Edge> &edges, int n, int i)
+void EdgeHeap::heapify(Edge edges[], int n, int i)
 {
     int smallest = i;
     int left_element = 2 * i + 1;
@@ -127,7 +127,7 @@ void EdgeHeap::heapify(vector<Edge> &edges, int n, int i)
     }
 }
 
-void EdgeHeap::heapSort(vector<Edge> &edges, int n)
+void EdgeHeap::heapSort(Edge edges[], int n)
 {
     for (int i = (n / 2) - 1; i >= 0; i--)
         heapify(edges, n, i);

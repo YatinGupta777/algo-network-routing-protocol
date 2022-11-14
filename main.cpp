@@ -11,7 +11,7 @@ int main()
 {
     Graph sparse_graph, dense_graph;
     sparse_graph.init();
-    sparse_graph.generateGraph(3);
+    sparse_graph.generateGraph(6);
     sparse_graph.print();
 
     // Dijkstra::maxBandwidthPath(sparse_graph, 0, VERTICES - 1);

@@ -6,6 +6,10 @@ Node::Node()
 {
 }
 
+Edge::Edge()
+{
+}
+
 Node::Node(int a, int b)
 {
     x = a;

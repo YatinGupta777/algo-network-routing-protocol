@@ -24,6 +24,6 @@ public:
 class EdgeHeap
 {
 public:
-    static void heapify(vector<Edge> &edges, int n, int i);
-    static void heapSort(vector<Edge> &edges, int n);
+    static void heapify(Edge edges[], int n, int i);
+    static void heapSort(Edge edges[], int n);
 };

@@ -6,13 +6,9 @@
 #include <queue>
 
 using namespace std;
+Edge edges[MAX_EDGES];
 
-bool cmp(Edge e1, Edge e2) // TODO
-{
-    return e1.weight > e2.weight;
-}
-
-void Kruskal::extractEdges(Graph G, vector<Edge> &edges)
+void Kruskal::extractEdges(Graph G, Edge edges[], int &number_of_edges)
 {
     for (int i = 0; i < VERTICES; i++)
     {
@@ -22,7 +18,8 @@ void Kruskal::extractEdges(Graph G, vector<Edge> &edges)
             if (i < t->x)
             {
                 Edge e(i, t->x, t->w);
-                edges.push_back(e);
+                edges[number_of_edges] = e;
+                number_of_edges++;
             }
             t = t->next;
         }
@@ -69,10 +66,10 @@ Graph Kruskal::createMST(Graph G)
 {
     Graph MST;
     MST.init();
-    vector<Edge> edges; // TODO
 
-    extractEdges(G, edges);
-    int number_of_edges = edges.size();
+    int number_of_edges = 0;
+
+    extractEdges(G, edges, number_of_edges);
 
     EdgeHeap::heapSort(edges, number_of_edges);
 

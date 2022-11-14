@@ -1,7 +1,9 @@
 #pragma once
 #define VERTICES 6
 #define MAX_WEIGHT 100
+#define MAX_EDGES (5000 * 5000)
 #include <vector>
+
 using namespace std;
 class Node
 {
@@ -18,6 +20,7 @@ public:
     int v1;
     int v2;
     int weight;
+    Edge();
     Edge(int a, int b, int c);
 };
 class Graph
