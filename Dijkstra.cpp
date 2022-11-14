@@ -84,16 +84,16 @@ void Dijkstra::maxBandwidthPath(Graph g, int source, int dest)
         }
     }
 
-    cout << endl;
-    for (int i = 0; i < VERTICES; i++)
-    {
-        cout << dad[i] << " ";
-    }
-    cout << endl;
-    for (int i = 0; i < VERTICES; i++)
-    {
-        cout << bwidth[i] << " ";
-    }
+    // cout << endl;
+    // for (int i = 0; i < VERTICES; i++)
+    // {
+    //     cout << dad[i] << " ";
+    // }
+    // cout << endl;
+    // for (int i = 0; i < VERTICES; i++)
+    // {
+    //     cout << bwidth[i] << " ";
+    // }
 }
 
 void Dijkstra::maxBandwidthPathWithHeap(Graph g, int source, int dest)
@@ -157,14 +157,14 @@ void Dijkstra::maxBandwidthPathWithHeap(Graph g, int source, int dest)
         }
     }
 
-    cout << endl;
-    for (int i = 0; i < VERTICES; i++)
-    {
-        cout << dad[i] << " ";
-    }
-    cout << endl;
-    for (int i = 0; i < VERTICES; i++)
-    {
-        cout << bwidth[i] << " ";
-    }
+    // cout << endl;
+    // for (int i = 0; i < VERTICES; i++)
+    // {
+    //     cout << dad[i] << " ";
+    // }
+    // cout << endl;
+    // for (int i = 0; i < VERTICES; i++)
+    // {
+    //     cout << bwidth[i] << " ";
+    // }
 }

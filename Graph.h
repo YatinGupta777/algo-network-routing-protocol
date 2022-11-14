@@ -1,6 +1,6 @@
 #pragma once
-#define VERTICES 6
-#define MAX_WEIGHT 100
+#define VERTICES 5000
+#define MAX_WEIGHT 1000
 #define MAX_EDGES (5000 * 5000)
 #include <vector>
 

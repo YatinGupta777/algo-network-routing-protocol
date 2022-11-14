@@ -56,10 +56,10 @@ void Kruskal::BFS(Graph G, int source, int destination)
     int x = destination;
     while (dad[x] != -1)
     {
-        cout << x << " ";
+        // cout << x << " ";
         x = dad[x];
     }
-    cout << source;
+    // cout << source;
 }
 
 Graph Kruskal::createMST(Graph G)
