@@ -3,6 +3,7 @@
 #include "Heap.h"
 
 using namespace std;
+void printPath(int dad[], int source, int destination);
 
 bool Dijkstra::isFringerPresent(int status[])
 {
@@ -32,7 +33,7 @@ int Dijkstra::largestBandwidthFringer(int status[], int bwidth[])
     return ans;
 }
 
-void Dijkstra::maxBandwidthPath(Graph g, int source, int dest)
+void Dijkstra::maxBandwidthPath(Graph g, int source, int destination)
 {
     int status[VERTICES]; // 0 unseen 1 fringer 2 in-tree
     int bwidth[VERTICES];
@@ -84,19 +85,19 @@ void Dijkstra::maxBandwidthPath(Graph g, int source, int dest)
         }
     }
 
-    // cout << endl;
-    // for (int i = 0; i < VERTICES; i++)
-    // {
-    //     cout << dad[i] << " ";
-    // }
-    // cout << endl;
-    // for (int i = 0; i < VERTICES; i++)
-    // {
-    //     cout << bwidth[i] << " ";
-    // }
+    printPath(dad, source, destination);
+
+    int x = destination;
+    int max_bwidth = INT_MAX;
+    while (dad[x] != -1)
+    {
+        max_bwidth = min(INT_MAX, bwidth[x]);
+        x = dad[x];
+    }
+    cout << "Max Bandwidth : " << max_bwidth << endl;
 }
 
-void Dijkstra::maxBandwidthPathWithHeap(Graph g, int source, int dest)
+void Dijkstra::maxBandwidthPathWithHeap(Graph g, int source, int destination)
 {
     int status[VERTICES]; // 0 unseen 1 fringer 2 in-tree
     int bwidth[VERTICES];
@@ -157,14 +158,13 @@ void Dijkstra::maxBandwidthPathWithHeap(Graph g, int source, int dest)
         }
     }
 
-    // cout << endl;
-    // for (int i = 0; i < VERTICES; i++)
-    // {
-    //     cout << dad[i] << " ";
-    // }
-    // cout << endl;
-    // for (int i = 0; i < VERTICES; i++)
-    // {
-    //     cout << bwidth[i] << " ";
-    // }
+    printPath(dad, source, destination);
+    int x = destination;
+    int max_bwidth = INT_MAX;
+    while (dad[x] != -1)
+    {
+        max_bwidth = min(INT_MAX, bwidth[x]);
+        x = dad[x];
+    }
+    cout << "Max Bandwidth : " << max_bwidth << endl;
 }
