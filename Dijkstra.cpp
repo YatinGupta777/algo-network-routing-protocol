@@ -4,6 +4,7 @@
 
 using namespace std;
 void printPath(int dad[], int source, int destination);
+void printBandwidth(int dad[], int bwidth[], int source, int destination);
 
 bool Dijkstra::isFringerPresent(int status[])
 {
@@ -86,15 +87,7 @@ void Dijkstra::maxBandwidthPath(Graph g, int source, int destination)
     }
 
     printPath(dad, source, destination);
-
-    int x = destination;
-    int max_bwidth = INT_MAX;
-    while (dad[x] != -1)
-    {
-        max_bwidth = min(INT_MAX, bwidth[x]);
-        x = dad[x];
-    }
-    cout << "Max Bandwidth : " << max_bwidth << endl;
+    printBandwidth(dad, bwidth, source, destination);
 }
 
 void Dijkstra::maxBandwidthPathWithHeap(Graph g, int source, int destination)
@@ -159,12 +152,5 @@ void Dijkstra::maxBandwidthPathWithHeap(Graph g, int source, int destination)
     }
 
     printPath(dad, source, destination);
-    int x = destination;
-    int max_bwidth = INT_MAX;
-    while (dad[x] != -1)
-    {
-        max_bwidth = min(INT_MAX, bwidth[x]);
-        x = dad[x];
-    }
-    cout << "Max Bandwidth : " << max_bwidth << endl;
+    printBandwidth(dad, bwidth, source, destination);
 }

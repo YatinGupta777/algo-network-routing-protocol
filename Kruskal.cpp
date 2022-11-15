@@ -8,6 +8,7 @@
 using namespace std;
 Edge edges[MAX_EDGES];
 void printPath(int dad[], int source, int destination);
+void printBandwidth(int dad[], int bwidth[], int source, int destination);
 
 void Kruskal::extractEdges(Graph G, Edge edges[], int &number_of_edges)
 {
@@ -29,11 +30,12 @@ void Kruskal::extractEdges(Graph G, Edge edges[], int &number_of_edges)
 
 void Kruskal::BFS(Graph G, int source, int destination)
 {
-    int visited[VERTICES] = {0}, dad[VERTICES] = {0};
+    int visited[VERTICES] = {0}, dad[VERTICES] = {0}, bwidth[VERTICES] = {0};
     queue<int> q; // TODO
     q.push(source);
     visited[source] = 1;
     dad[source] = -1;
+    bwidth[source] = INT_MAX;
 
     while (!q.empty())
     {
@@ -49,12 +51,14 @@ void Kruskal::BFS(Graph G, int source, int destination)
                 visited[v] = 1;
                 q.push(v);
                 dad[v] = x;
+                bwidth[v] = t->w;
             }
             t = t->next;
         }
     }
 
     printPath(dad, source, destination);
+    printBandwidth(dad, bwidth, source, destination);
 }
 
 Graph Kruskal::createMST(Graph G)
@@ -89,7 +93,8 @@ Graph Kruskal::createMST(Graph G)
     return MST;
 }
 
-void Kruskal::maxBandwidthPath(Graph mst, int source, int destination)
+void Kruskal::maxBandwidthPath(Graph g, int source, int destination)
 {
+    Graph mst = Kruskal::createMST(g);
     BFS(mst, source, destination);
 }
