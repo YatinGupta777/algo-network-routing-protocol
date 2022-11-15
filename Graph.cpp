@@ -75,7 +75,16 @@ void Graph::generateGraph(int degree)
 
     for (int i = 0; i < VERTICES; i++)
     {
-        for (int j = 0; j < (degree) / 2; j++)
+        int number_of_neighbors = (degree) / 2;
+
+        if (degree > 10)
+        {
+            // Average degree : 1000
+            // number_of_neighbors between 950 to 1050
+            number_of_neighbors = (number_of_neighbors - 50) + rand() % 100;
+        }
+
+        for (int j = 0; j < number_of_neighbors; j++)
         {
             int x = rand() % VERTICES;
 
@@ -84,6 +93,8 @@ void Graph::generateGraph(int degree)
             {
                 addEdge(i, x);
             }
+            else
+                j--;
         }
     }
 }
