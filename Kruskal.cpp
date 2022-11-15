@@ -7,6 +7,7 @@
 
 using namespace std;
 Edge edges[MAX_EDGES];
+void printPath(int dad[], int source, int destination);
 
 void Kruskal::extractEdges(Graph G, Edge edges[], int &number_of_edges)
 {
@@ -53,13 +54,7 @@ void Kruskal::BFS(Graph G, int source, int destination)
         }
     }
 
-    int x = destination;
-    while (dad[x] != -1)
-    {
-        // cout << x << " ";
-        x = dad[x];
-    }
-    // cout << source;
+    printPath(dad, source, destination);
 }
 
 Graph Kruskal::createMST(Graph G)
