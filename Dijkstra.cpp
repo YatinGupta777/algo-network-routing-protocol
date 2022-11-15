@@ -86,8 +86,11 @@ void Dijkstra::maxBandwidthPath(Graph g, int source, int destination)
         }
     }
 
+    cout << "DIJKSTRA : NO HEAP" << endl;
+    cout << "-----------------------------------------------------------" << endl;
     printPath(dad, source, destination);
     printBandwidth(dad, bwidth, source, destination);
+    cout << "-----------------------------------------------------------" << endl;
 }
 
 void Dijkstra::maxBandwidthPathWithHeap(Graph g, int source, int destination)
@@ -151,6 +154,9 @@ void Dijkstra::maxBandwidthPathWithHeap(Graph g, int source, int destination)
         }
     }
 
+    cout << "DIJKSTRA : NO HEAP" << endl;
+    cout << "-----------------------------------------------------------" << endl;
     printPath(dad, source, destination);
     printBandwidth(dad, bwidth, source, destination);
+    cout << "-----------------------------------------------------------" << endl;
 }

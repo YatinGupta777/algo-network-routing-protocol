@@ -57,8 +57,11 @@ void Kruskal::BFS(Graph G, int source, int destination)
         }
     }
 
+    cout << "KRUSKAL" << endl;
+    cout << "-----------------------------------------------------------" << endl;
     printPath(dad, source, destination);
     printBandwidth(dad, bwidth, source, destination);
+    cout << "-----------------------------------------------------------" << endl;
 }
 
 Graph Kruskal::createMST(Graph G)
