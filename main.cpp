@@ -12,7 +12,15 @@ class Graph;
 
 int main()
 {
+    srand((unsigned int)time(NULL));
     auto start = high_resolution_clock::now();
+
+    int source = rand() % VERTICES;
+    int destination = rand() % VERTICES;
+
+    cout << "Source : " << source << endl
+         << "dest " << destination << endl;
+
     Graph sparse_graph, dense_graph;
     cout << "Sparse Graph : " << endl;
 
@@ -20,23 +28,26 @@ int main()
     sparse_graph.generateGraph(6);
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
-    cout << "Generation : " << duration.count() << endl;
+    cout << "Generation : " << (double)duration.count() / 1000.0 << endl;
+
     start = high_resolution_clock::now();
-    Dijkstra::maxBandwidthPath(sparse_graph, 0, VERTICES - 1);
+    Dijkstra::maxBandwidthPath(sparse_graph, source, destination);
     stop = high_resolution_clock::now();
     duration = duration_cast<microseconds>(stop - start);
-    cout << "maxBandwidthPath : " << duration.count() << endl;
+    cout << "maxBandwidthPath : " << (double)duration.count() / 1000.0 << endl;
+
     start = high_resolution_clock::now();
-    Dijkstra::maxBandwidthPathWithHeap(sparse_graph, 0, VERTICES - 1);
+    Dijkstra::maxBandwidthPathWithHeap(sparse_graph, source, destination);
     stop = high_resolution_clock::now();
     duration = duration_cast<microseconds>(stop - start);
-    cout << "maxBandwidthPathWithHeap : " << duration.count() << endl;
+    cout << "maxBandwidthPathWithHeap : " << (double)duration.count() / 1000.0 << endl;
+
     start = high_resolution_clock::now();
     Graph mst = Kruskal::createMST(sparse_graph);
-    Kruskal::maxBandwidthPath(mst, 0, VERTICES - 1);
+    Kruskal::maxBandwidthPath(mst, source, destination);
     stop = high_resolution_clock::now();
     duration = duration_cast<microseconds>(stop - start);
-    cout << "Kruskal : " << duration.count() << endl;
+    cout << "Kruskal : " << (double)duration.count() / 1000.0 << endl;
     // cout << "Kruskal : " << clock() - start << endl;
     // start = clock();
 
@@ -46,26 +57,26 @@ int main()
     dense_graph.generateGraph(VERTICES / 5);
     stop = high_resolution_clock::now();
     duration = duration_cast<microseconds>(stop - start);
-    cout << "Generation : " << duration.count() << endl;
+    cout << "Generation : " << (double)duration.count() / 1000.0 << endl;
 
     start = high_resolution_clock::now();
-    Dijkstra::maxBandwidthPath(dense_graph, 0, VERTICES - 1);
+    Dijkstra::maxBandwidthPath(dense_graph, source, destination);
     stop = high_resolution_clock::now();
     duration = duration_cast<microseconds>(stop - start);
-    cout << "maxBandwidthPath : " << duration.count() << endl;
+    cout << "maxBandwidthPath : " << (double)duration.count() / 1000.0 << endl;
 
     start = high_resolution_clock::now();
-    Dijkstra::maxBandwidthPathWithHeap(dense_graph, 0, VERTICES - 1);
+    Dijkstra::maxBandwidthPathWithHeap(dense_graph, source, destination);
     stop = high_resolution_clock::now();
     duration = duration_cast<microseconds>(stop - start);
-    cout << "maxBandwidthPathWithHeap : " << duration.count() << endl;
-    start = high_resolution_clock::now();
+    cout << "maxBandwidthPathWithHeap : " << (double)duration.count() / 1000.0 << endl;
 
+    start = high_resolution_clock::now();
     Graph dense_mst = Kruskal::createMST(dense_graph);
-    Kruskal::maxBandwidthPath(dense_mst, 0, VERTICES - 1);
+    Kruskal::maxBandwidthPath(dense_mst, source, destination);
     stop = high_resolution_clock::now();
     duration = duration_cast<microseconds>(stop - start);
-    cout << "Kruskal : " << duration.count() << endl;
+    cout << "Kruskal : " << (double)duration.count() / 1000.0 << endl;
 
     return 0;
 }
