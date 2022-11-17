@@ -2,11 +2,13 @@
 #include "Kruskal.h"
 #include "Set.h"
 #include "Heap.h"
+#include "Queue.h"
 #include <iostream>
-#include <queue>
 
 using namespace std;
 Edge edges[MAX_EDGES];
+class CUSTOM_QUEUE;
+
 void printPath(int dad[], int source, int destination);
 void printBandwidth(int dad[], int bwidth[], int source, int destination);
 
@@ -31,7 +33,7 @@ void Kruskal::extractEdges(Graph G, Edge edges[], int &number_of_edges)
 void Kruskal::BFS(Graph G, int source, int destination)
 {
     int visited[VERTICES] = {0}, dad[VERTICES] = {0}, bwidth[VERTICES] = {0};
-    queue<int> q; // TODO
+    CUSTOM_QUEUE q;
     q.push(source);
     visited[source] = 1;
     dad[source] = -1;
