@@ -17,8 +17,8 @@ int main()
     srand((unsigned int)time(NULL));
     auto start = high_resolution_clock::now();
 
-    double sparse_report[NUMBER_OF_ITERATIONS * NUMBER_OF_ITERATIONS][4] = {0};
-    double dense_report[NUMBER_OF_ITERATIONS * NUMBER_OF_ITERATIONS][4] = {0};
+    double sparse_report[NUMBER_OF_ITERATIONS * NUMBER_OF_ITERATIONS][3] = {0};
+    double dense_report[NUMBER_OF_ITERATIONS * NUMBER_OF_ITERATIONS][3] = {0};
 
     cout << "Sparse Graph : " << endl;
     for (int i = 0; i < NUMBER_OF_ITERATIONS; i++)
@@ -28,7 +28,6 @@ int main()
         sparse_graph.generateGraph(6);
         auto stop = high_resolution_clock::now();
         auto duration = duration_cast<microseconds>(stop - start);
-        sparse_report[i * 5][0] = (double)duration.count() / 1000.0;
         for (int j = 0; j < NUMBER_OF_ITERATIONS; j++)
         {
             int source = rand() % VERTICES;
@@ -41,19 +40,19 @@ int main()
             Dijkstra::maxBandwidthPath(sparse_graph, source, destination);
             stop = high_resolution_clock::now();
             duration = duration_cast<microseconds>(stop - start);
-            sparse_report[j + (i * 5)][1] = (double)duration.count() / 1000.0;
+            sparse_report[j + (i * 5)][0] = (double)duration.count() / 1000.0;
 
             start = high_resolution_clock::now();
             Dijkstra::maxBandwidthPathWithHeap(sparse_graph, source, destination);
             stop = high_resolution_clock::now();
             duration = duration_cast<microseconds>(stop - start);
-            sparse_report[j + (i * 5)][2] = (double)duration.count() / 1000.0;
+            sparse_report[j + (i * 5)][1] = (double)duration.count() / 1000.0;
 
             start = high_resolution_clock::now();
             Kruskal::maxBandwidthPath(sparse_graph, source, destination);
             stop = high_resolution_clock::now();
             duration = duration_cast<microseconds>(stop - start);
-            sparse_report[j + (i * 5)][3] = (double)duration.count() / 1000.0;
+            sparse_report[j + (i * 5)][2] = (double)duration.count() / 1000.0;
         }
     }
 
@@ -67,7 +66,6 @@ int main()
         dense_graph.generateGraph(VERTICES / 5);
         auto stop = high_resolution_clock::now();
         auto duration = duration_cast<microseconds>(stop - start);
-        dense_report[i * 5][0] = (double)duration.count() / 1000.0;
         for (int j = 0; j < NUMBER_OF_ITERATIONS; j++)
         {
             int source = rand() % VERTICES;
@@ -80,25 +78,24 @@ int main()
             Dijkstra::maxBandwidthPath(dense_graph, source, destination);
             stop = high_resolution_clock::now();
             duration = duration_cast<microseconds>(stop - start);
-            dense_report[j + (i * 5)][1] = (double)duration.count() / 1000.0;
+            dense_report[j + (i * 5)][0] = (double)duration.count() / 1000.0;
 
             start = high_resolution_clock::now();
             Dijkstra::maxBandwidthPathWithHeap(dense_graph, source, destination);
             stop = high_resolution_clock::now();
             duration = duration_cast<microseconds>(stop - start);
-            dense_report[j + (i * 5)][2] = (double)duration.count() / 1000.0;
+            dense_report[j + (i * 5)][1] = (double)duration.count() / 1000.0;
 
             start = high_resolution_clock::now();
             Kruskal::maxBandwidthPath(dense_graph, source, destination);
             stop = high_resolution_clock::now();
             duration = duration_cast<microseconds>(stop - start);
-            dense_report[j + (i * 5)][3] = (double)duration.count() / 1000.0;
+            dense_report[j + (i * 5)][2] = (double)duration.count() / 1000.0;
         }
     }
 
     cout << "SPARSE REPORT" << endl;
     cout << "-----------------------------------------------------------" << endl;
-    cout << " | " << setw(10) << "GENERATE";
     cout << " | " << setw(10) << "NO_HEAP";
     cout << " | " << setw(10) << "HEAP";
     cout << " | " << setw(10) << "KRUSKAL";
@@ -107,7 +104,7 @@ int main()
 
     for (int i = 0; i < NUMBER_OF_ITERATIONS * NUMBER_OF_ITERATIONS; i++)
     {
-        for (int j = 0; j < 4; j++)
+        for (int j = 0; j < 3; j++)
         {
             cout << " | ";
             cout << setw(10) << sparse_report[i][j];
@@ -117,7 +114,6 @@ int main()
 
     cout << "DENSE REPORT" << endl;
     cout << "-----------------------------------------------------------" << endl;
-    cout << " | " << setw(10) << "GENERATE";
     cout << " | " << setw(10) << "NO_HEAP";
     cout << " | " << setw(10) << "HEAP";
     cout << " | " << setw(10) << "KRUSKAL";
@@ -126,7 +122,7 @@ int main()
 
     for (int i = 0; i < NUMBER_OF_ITERATIONS * NUMBER_OF_ITERATIONS; i++)
     {
-        for (int j = 0; j < 4; j++)
+        for (int j = 0; j < 3; j++)
         {
             cout << " | ";
             cout << setw(10) << dense_report[i][j];
