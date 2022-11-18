@@ -17,7 +17,7 @@ void MUF::makeSet(int vertex)
     dad[vertex] = -1;
     rank[vertex] = 0;
 }
-void MUF::union_vertices(int v1, int v2)
+void MUF::unionVertices(int v1, int v2)
 {
     int r1 = find(v1);
     int r2 = find(v2);
