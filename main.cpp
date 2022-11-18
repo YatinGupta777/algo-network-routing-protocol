@@ -96,36 +96,48 @@ int main()
 
     cout << "SPARSE REPORT" << endl;
     cout << "-----------------------------------------------------------" << endl;
-    cout << " | " << setw(10) << "NO_HEAP";
-    cout << " | " << setw(10) << "HEAP";
+    cout << " | " << setw(10) << "GRAPH #";
+    cout << " | " << setw(10) << "DIJKSTRA";
+    cout << " | " << setw(18) << "DIJKSTRA WITH HEAP";
     cout << " | " << setw(10) << "KRUSKAL";
     cout << " | " << endl;
     cout << "-----------------------------------------------------------" << endl;
 
     for (int i = 0; i < NUMBER_OF_ITERATIONS * NUMBER_OF_ITERATIONS; i++)
     {
+        cout << " | ";
+        cout << setw(9) << "G" << i / 5;
         for (int j = 0; j < 3; j++)
         {
             cout << " | ";
-            cout << setw(10) << sparse_report[i][j];
+            int w = 10;
+            if (j == 1)
+                w = 18;
+            cout << setw(w) << sparse_report[i][j];
         }
         cout << " | " << endl;
     }
 
     cout << "DENSE REPORT" << endl;
     cout << "-----------------------------------------------------------" << endl;
-    cout << " | " << setw(10) << "NO_HEAP";
-    cout << " | " << setw(10) << "HEAP";
+    cout << " | " << setw(10) << "GRAPH #";
+    cout << " | " << setw(10) << "DIJKSTRA";
+    cout << " | " << setw(18) << "DIJKSTRA WITH HEAP";
     cout << " | " << setw(10) << "KRUSKAL";
     cout << " | " << endl;
     cout << "-----------------------------------------------------------" << endl;
 
     for (int i = 0; i < NUMBER_OF_ITERATIONS * NUMBER_OF_ITERATIONS; i++)
     {
+        cout << " | ";
+        cout << setw(9) << "G" << i / 5;
         for (int j = 0; j < 3; j++)
         {
             cout << " | ";
-            cout << setw(10) << dense_report[i][j];
+            int w = 10;
+            if (j == 1)
+                w = 18;
+            cout << setw(w) << dense_report[i][j];
         }
         cout << " | " << endl;
     }
