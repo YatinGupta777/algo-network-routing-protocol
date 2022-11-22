@@ -64,30 +64,72 @@ void Graph::addEdge(int source, int destination, int weight = rand() % MAX_WEIGH
     Edge e(source, destination, weight);
 }
 
-void Graph::generateGraph(int degree)
+void Graph::generateSparseGraph()
+{
+    int degree[VERTICES] = {0};
+    // add cycle to ensure connectedness
+    for (int i = 0; i < VERTICES; i++)
+    {
+        addEdge(i, (i + 1) % VERTICES);
+        degree[i]++;
+        degree[(i + 1) % VERTICES]++;
+    }
+
+    // Perform VERTICES Number of retires on each vertex to find a random neighbor which has degree < 6
+    for (int i = 0; i < VERTICES; i++)
+    {
+        int retries = VERTICES;
+        for (int j = 0; j < retries; j++)
+        {
+            if (degree[i] == 6)
+                break;
+            int x = rand() % VERTICES;
+            // To ensure one edge between 2 unique pair of vertices and respective degree == 6
+            if (!isEdgePresent(i, x) && degree[i] < 6 && degree[x] < 6)
+            {
+                addEdge(i, x);
+                degree[i]++;
+                degree[x]++;
+            }
+        }
+    }
+
+    // Additional check to add vertices manually if their degree is still less than 6
+    for (int i = 0; i < VERTICES; i++)
+    {
+        if (degree[i] < 6)
+        {
+            int diff = 6 - degree[i];
+            for (int j = 0; j < diff; j++)
+            {
+                for (int k = i + 1; k < VERTICES; k++)
+                {
+                    if (!isEdgePresent(i, k) && degree[k] < 6)
+                    {
+                        addEdge(i, k);
+                        degree[i]++;
+                        degree[k]++;
+                    }
+                }
+            }
+        }
+    }
+}
+
+void Graph::generateDenseGraph()
 {
     // add cycle to ensure connectedness
-    for (int i = 0; i < VERTICES - 1; i++)
+    for (int i = 0; i < VERTICES; i++)
     {
-        addEdge(i, i + 1);
+        addEdge(i, (i + 1) % VERTICES);
     }
-    addEdge(VERTICES - 1, 0);
 
     for (int i = 0; i < VERTICES; i++)
     {
-        int number_of_neighbors = (degree) / 2;
-
-        if (degree > 10)
-        {
-            // Average degree : 1000
-            // number_of_neighbors between 950 to 1050
-            number_of_neighbors = (number_of_neighbors - 50) + rand() % 100;
-        }
-
+        int number_of_neighbors = (((VERTICES / 5) / 2) - 50) + rand() % 100;
         for (int j = 0; j < number_of_neighbors; j++)
         {
             int x = rand() % VERTICES;
-
             // To ensure one edge between 2 unique pair of vertices
             if (!isEdgePresent(i, x))
             {
@@ -101,6 +143,7 @@ void Graph::generateGraph(int degree)
 
 void Graph::print()
 {
+    int number_of_edges = 0;
     for (int i = 0; i < VERTICES; i++)
     {
         cout << i << " -> ";
@@ -111,7 +154,9 @@ void Graph::print()
             if (t->next != NULL)
                 cout << " - ";
             t = t->next;
+            number_of_edges++;
         }
         cout << endl;
     }
+    cout << "Edges : " << number_of_edges << endl;
 }

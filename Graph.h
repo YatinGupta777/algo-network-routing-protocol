@@ -25,7 +25,8 @@ class Graph
 public:
     Node *nodes[VERTICES];
     void init();
-    void generateGraph(int degree);
+    void generateSparseGraph();
+    void generateDenseGraph();
     void print();
     void addEdge(int source, int destination, int weight);
     bool isEdgePresent(int source, int destination);

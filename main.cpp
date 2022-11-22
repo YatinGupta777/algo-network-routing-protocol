@@ -25,7 +25,7 @@ int main()
     {
         Graph sparse_graph;
         sparse_graph.init();
-        sparse_graph.generateGraph(6);
+        sparse_graph.generateSparseGraph();
         auto stop = high_resolution_clock::now();
         auto duration = duration_cast<microseconds>(stop - start);
         for (int j = 0; j < NUMBER_OF_ITERATIONS; j++)
@@ -108,7 +108,7 @@ int main()
     {
         Graph dense_graph;
         dense_graph.init();
-        dense_graph.generateGraph(VERTICES / 5);
+        dense_graph.generateDenseGraph();
         auto stop = high_resolution_clock::now();
         auto duration = duration_cast<microseconds>(stop - start);
         for (int j = 0; j < NUMBER_OF_ITERATIONS; j++)
@@ -184,6 +184,5 @@ int main()
     cout << "Average running time of Dikstra with heap : " << avg_dijkstra_with_heap << "ms" << endl;
     cout << "Average running time of Kruskal : " << avg_kruskal << "ms" << endl;
     cout << "----------------------------------------------------------------------------------------------------------------------" << endl;
-
     return 0;
 }
