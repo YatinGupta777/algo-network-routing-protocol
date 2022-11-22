@@ -56,6 +56,43 @@ int main()
         }
     }
 
+    start = high_resolution_clock::now();
+    cout << "Dense Graph : " << endl;
+    for (int i = 0; i < NUMBER_OF_ITERATIONS; i++)
+    {
+        Graph dense_graph;
+        dense_graph.init();
+        dense_graph.generateDenseGraph();
+        auto stop = high_resolution_clock::now();
+        auto duration = duration_cast<microseconds>(stop - start);
+        for (int j = 0; j < NUMBER_OF_ITERATIONS; j++)
+        {
+            int source = rand() % VERTICES;
+            int destination = rand() % VERTICES;
+
+            dense_report[j + (i * 5)][0] = source;
+            dense_report[j + (i * 5)][1] = destination;
+
+            start = high_resolution_clock::now();
+            Dijkstra::maxBandwidthPath(dense_graph, source, destination);
+            stop = high_resolution_clock::now();
+            duration = duration_cast<microseconds>(stop - start);
+            dense_report[j + (i * 5)][2] = (double)duration.count() / 1000.0;
+
+            start = high_resolution_clock::now();
+            Dijkstra::maxBandwidthPathWithHeap(dense_graph, source, destination);
+            stop = high_resolution_clock::now();
+            duration = duration_cast<microseconds>(stop - start);
+            dense_report[j + (i * 5)][3] = (double)duration.count() / 1000.0;
+
+            start = high_resolution_clock::now();
+            Kruskal::maxBandwidthPath(dense_graph, source, destination);
+            stop = high_resolution_clock::now();
+            duration = duration_cast<microseconds>(stop - start);
+            dense_report[j + (i * 5)][4] = (double)duration.count() / 1000.0;
+        }
+    }
+
     cout << "SPARSE REPORT: Running time in milliseconds" << endl;
     cout << "----------------------------------------------------------------------------------------------------------------------" << endl;
     cout << " | " << setw(10) << "GRAPH #";
@@ -101,43 +138,6 @@ int main()
     cout << "Average running time of Dikstra with heap : " << avg_dijkstra_with_heap << "ms" << endl;
     cout << "Average running time of Kruskal : " << avg_kruskal << "ms" << endl;
     cout << "----------------------------------------------------------------------------------------------------------------------" << endl;
-
-    start = high_resolution_clock::now();
-    cout << "Dense Graph : " << endl;
-    for (int i = 0; i < NUMBER_OF_ITERATIONS; i++)
-    {
-        Graph dense_graph;
-        dense_graph.init();
-        dense_graph.generateDenseGraph();
-        auto stop = high_resolution_clock::now();
-        auto duration = duration_cast<microseconds>(stop - start);
-        for (int j = 0; j < NUMBER_OF_ITERATIONS; j++)
-        {
-            int source = rand() % VERTICES;
-            int destination = rand() % VERTICES;
-
-            dense_report[j + (i * 5)][0] = source;
-            dense_report[j + (i * 5)][1] = destination;
-
-            start = high_resolution_clock::now();
-            Dijkstra::maxBandwidthPath(dense_graph, source, destination);
-            stop = high_resolution_clock::now();
-            duration = duration_cast<microseconds>(stop - start);
-            dense_report[j + (i * 5)][2] = (double)duration.count() / 1000.0;
-
-            start = high_resolution_clock::now();
-            Dijkstra::maxBandwidthPathWithHeap(dense_graph, source, destination);
-            stop = high_resolution_clock::now();
-            duration = duration_cast<microseconds>(stop - start);
-            dense_report[j + (i * 5)][3] = (double)duration.count() / 1000.0;
-
-            start = high_resolution_clock::now();
-            Kruskal::maxBandwidthPath(dense_graph, source, destination);
-            stop = high_resolution_clock::now();
-            duration = duration_cast<microseconds>(stop - start);
-            dense_report[j + (i * 5)][4] = (double)duration.count() / 1000.0;
-        }
-    }
 
     cout << "DENSE REPORT: Running time in milliseconds" << endl;
     cout << "----------------------------------------------------------------------------------------------------------------------" << endl;
