@@ -60,8 +60,6 @@ void Graph::addEdge(int source, int destination, int weight = rand() % MAX_WEIGH
     while (temp->next != NULL)
         temp = temp->next;
     temp->next = s;
-
-    Edge e(source, destination, weight);
 }
 
 void Graph::generateSparseGraph()
