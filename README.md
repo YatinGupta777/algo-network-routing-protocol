@@ -1,6 +1,8 @@
 # algo-network-routing-protocol
 
 compile and run
-make main && ./$_
+g++ *.cpp -o output && ./output
 
-Or run ctrl+alt+n in vscode (code runner extension)
+OR
+
+run ctrl+alt+n in vscode (code runner extension)
