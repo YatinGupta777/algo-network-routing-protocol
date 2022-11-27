@@ -19,7 +19,7 @@ int main()
     double sparse_report[NUMBER_OF_ITERATIONS * NUMBER_OF_ITERATIONS][5] = {0};
     double dense_report[NUMBER_OF_ITERATIONS * NUMBER_OF_ITERATIONS][5] = {0};
 
-    cout << "Sparse Graph : " << endl;
+    cout << "#############  SPARSE GRAPHS ################" << endl;
     for (int i = 0; i < NUMBER_OF_ITERATIONS; i++)
     {
         auto start = high_resolution_clock::now();
@@ -28,10 +28,17 @@ int main()
         sparse_graph.generateSparseGraph();
         auto stop = high_resolution_clock::now();
         auto duration = duration_cast<microseconds>(stop - start);
+
+        cout << "---------- SPARSE GRAPH " << (i + 1) << " GENERATED ----------" << endl;
+
         for (int j = 0; j < NUMBER_OF_ITERATIONS; j++)
         {
             int source = rand() % VERTICES;
             int destination = rand() % VERTICES;
+
+            cout << "################################################################################################" << endl;
+            cout << "SOURCE: " << source << endl;
+            cout << "DESTINATION: " << destination << endl;
 
             sparse_report[j + (i * 5)][0] = source;
             sparse_report[j + (i * 5)][1] = destination;
@@ -53,10 +60,11 @@ int main()
             stop = high_resolution_clock::now();
             duration = duration_cast<microseconds>(stop - start);
             sparse_report[j + (i * 5)][4] = (double)duration.count() / 1000.0;
+            cout << "################################################################################################" << endl;
         }
     }
 
-    cout << "Dense Graph : " << endl;
+    cout << "#############  DENSE GRAPHS ################" << endl;
     for (int i = 0; i < NUMBER_OF_ITERATIONS; i++)
     {
         auto start = high_resolution_clock::now();
@@ -65,10 +73,16 @@ int main()
         dense_graph.generateDenseGraph();
         auto stop = high_resolution_clock::now();
         auto duration = duration_cast<microseconds>(stop - start);
+        cout << "---------- DENSE GRAPH " << (i + 1) << " GENERATED ----------" << endl;
+
         for (int j = 0; j < NUMBER_OF_ITERATIONS; j++)
         {
             int source = rand() % VERTICES;
             int destination = rand() % VERTICES;
+
+            cout << "################################################################################################" << endl;
+            cout << "SOURCE: " << source << endl;
+            cout << "DESTINATION: " << destination << endl;
 
             dense_report[j + (i * 5)][0] = source;
             dense_report[j + (i * 5)][1] = destination;
@@ -90,6 +104,7 @@ int main()
             stop = high_resolution_clock::now();
             duration = duration_cast<microseconds>(stop - start);
             dense_report[j + (i * 5)][4] = (double)duration.count() / 1000.0;
+            cout << "################################################################################################" << endl;
         }
     }
 

@@ -15,6 +15,9 @@ void printPath(int dad[], int source, int destination)
         count++;
     }
     path[count] = source;
+
+    cout << "Maximum bandwith path : ";
+
     for (int i = count; i >= 0; i--)
     {
         cout << path[i];
