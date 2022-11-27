@@ -94,18 +94,6 @@ void MaxHeap::deleteElement(int vertex)
     fixTopDown(0);
 }
 
-void MaxHeap::print()
-{
-    cout << endl;
-    for (int i = 0; i <= last_element_index; i++)
-        cout << " H " << H[i] << " D " << D[H[i]] << " P " << P[H[i]] << endl;
-
-    for (int i = 0; i < VERTICES; i++)
-        cout << " " << H[i];
-    cout << endl
-         << "XXXXXXX" << endl;
-}
-
 void EdgeHeap::heapify(Edge edges[], int n, int i)
 {
     int smallest = i;

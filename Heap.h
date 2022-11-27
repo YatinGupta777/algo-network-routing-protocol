@@ -16,7 +16,6 @@ public:
     void insert(int vertex, int weight);
     void deleteElement(int vertex);
     int maximum();
-    void print();
     int currentSize();
 };
 
