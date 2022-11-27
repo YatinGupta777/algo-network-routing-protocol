@@ -15,7 +15,6 @@ class Graph;
 int main()
 {
     srand((unsigned int)time(NULL));
-    auto start = high_resolution_clock::now();
 
     double sparse_report[NUMBER_OF_ITERATIONS * NUMBER_OF_ITERATIONS][5] = {0};
     double dense_report[NUMBER_OF_ITERATIONS * NUMBER_OF_ITERATIONS][5] = {0};
@@ -23,6 +22,7 @@ int main()
     cout << "Sparse Graph : " << endl;
     for (int i = 0; i < NUMBER_OF_ITERATIONS; i++)
     {
+        auto start = high_resolution_clock::now();
         Graph sparse_graph;
         sparse_graph.init();
         sparse_graph.generateSparseGraph();
@@ -56,10 +56,10 @@ int main()
         }
     }
 
-    start = high_resolution_clock::now();
     cout << "Dense Graph : " << endl;
     for (int i = 0; i < NUMBER_OF_ITERATIONS; i++)
     {
+        auto start = high_resolution_clock::now();
         Graph dense_graph;
         dense_graph.init();
         dense_graph.generateDenseGraph();
