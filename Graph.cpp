@@ -1,5 +1,7 @@
 #include "Graph.h"
 #include <iostream>
+#include <cmath>
+
 using namespace std;
 
 Node::Node()
@@ -137,6 +139,21 @@ void Graph::generateDenseGraph()
                 j--;
         }
     }
+}
+
+int Graph::avgDegree()
+{
+    long long int total_edges = 0;
+    for (int i = 0; i < VERTICES; i++)
+    {
+        Node *t = nodes[i]->next;
+        while (t != NULL)
+        {
+            t = t->next;
+            total_edges++;
+        }
+    }
+    return round((double)total_edges / (double)VERTICES);
 }
 
 void Graph::print()

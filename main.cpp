@@ -5,6 +5,8 @@
 #include "Kruskal.h"
 #include <chrono>
 #include <iomanip>
+#include <cmath>
+
 #define NUMBER_OF_ITERATIONS 5
 
 using namespace std;
@@ -26,10 +28,11 @@ int main()
         Graph sparse_graph;
         sparse_graph.init();
         sparse_graph.generateSparseGraph();
+        cout << "---------- SPARSE GRAPH " << (i + 1) << " GENERATED ----------" << endl;
+        int degree = sparse_graph.avgDegree();
+        cout << "Average Degree : " << degree << endl;
         auto stop = high_resolution_clock::now();
         auto duration = duration_cast<microseconds>(stop - start);
-
-        cout << "---------- SPARSE GRAPH " << (i + 1) << " GENERATED ----------" << endl;
 
         for (int j = 0; j < NUMBER_OF_ITERATIONS; j++)
         {
@@ -71,9 +74,12 @@ int main()
         Graph dense_graph;
         dense_graph.init();
         dense_graph.generateDenseGraph();
+        cout << "---------- DENSE GRAPH " << (i + 1) << " GENERATED ----------" << endl;
+        int degree = dense_graph.avgDegree();
+        cout << "Average Degree % : " << round((double)degree * 100 / (double)VERTICES) << "%" << endl;
+
         auto stop = high_resolution_clock::now();
         auto duration = duration_cast<microseconds>(stop - start);
-        cout << "---------- DENSE GRAPH " << (i + 1) << " GENERATED ----------" << endl;
 
         for (int j = 0; j < NUMBER_OF_ITERATIONS; j++)
         {
