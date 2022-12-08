@@ -86,10 +86,13 @@ Graph Kruskal::createMST(Graph G)
         int v1 = e.v1;
         int v2 = e.v2;
 
-        if (kruskal_muf.find(v1) != kruskal_muf.find(v2))
+        int r1 = kruskal_muf.find(v1);
+        int r2 = kruskal_muf.find(v2);
+
+        if (r1 != r2)
         {
             MST.addEdge(v1, v2, e.weight);
-            kruskal_muf.unionVertices(v1, v2);
+            kruskal_muf.unionVertices(r1, r2);
         }
     }
 

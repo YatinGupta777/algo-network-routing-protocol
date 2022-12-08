@@ -17,11 +17,8 @@ void MUF::makeSet(int vertex)
     dad[vertex] = -1;
     rank[vertex] = 0;
 }
-void MUF::unionVertices(int v1, int v2)
+void MUF::unionVertices(int r1, int r2)
 {
-    int r1 = find(v1);
-    int r2 = find(v2);
-
     if (rank[r1] > rank[r2])
         dad[r2] = r1;
     else if (rank[r1] < rank[r2])
